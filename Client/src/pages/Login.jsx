@@ -8,7 +8,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     const deviceId = navigator.userAgent; // Simple device identifier
-    const response = await fetch("https://ctf-round-server.vercel.app/login", {
+    const response = await fetch("https://ctf-round.onrender.com/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, email, deviceId }),

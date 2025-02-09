@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 
-const socket = io("https://ctf-round-server.vercel.app", { transports: ["websocket"] });
+const socket = io("https://ctf-round.onrender.com", { transports: ["websocket"] });
 
 const AdminDashboard = () => {
   const { roomId } = useParams();
@@ -11,7 +11,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     // Fetch initial player data
     const fetchProgress = async () => {
-      const response = await fetch(`https://ctf-round-server.vercel.app/admin/progress/${roomId}`);
+      const response = await fetch(`https://ctf-round.onrender.com/admin/progress/${roomId}`);
       const data = await response.json();
       setPlayers(data);
     };
