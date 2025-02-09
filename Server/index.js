@@ -9,14 +9,14 @@
   const server = http.createServer(app);
   const io = new Server(server, {
     cors: {
-      origin: ["http://localhost:5173", "https://your-frontend-domain.com"], // Allow frontend
+      origin: ["http://localhost:5173", "https://ctf-round-client.vercel.app"], // Allow frontend
       methods: ["GET", "POST"], // Allow these HTTP methods
       credentials: true, // Allow cookies & authentication
     },
   });
 
   // Middleware
-  app.use(cors({ origin: ["http://localhost:5173", "https://your-frontend-domain.com"], credentials: true }));
+  app.use(cors({ origin: ["http://localhost:5173", "https://ctf-round-client.vercel.app"], credentials: true }));
 
   mongoose.connect("mongodb+srv://CSI:CSI%40123@cluster0.1eckj.mongodb.net/CTF-Round", { useNewUrlParser: true });
 
