@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 
-const socket = io("http://192.168.1.3:5000");
+const socket = io("https://ctf-round-server.vercel.app", { transports: ["websocket"] });
 
 const GameRoom = () => {
   const { userId, roomId } = useParams();
@@ -14,7 +14,7 @@ const GameRoom = () => {
     // Fetch current progress from DB on first load or reload
     const fetchProgress = async () => {
       try {
-        const response = await fetch(`http://192.168.1.3:5000/player/progress/${userId}`);
+        const response = await fetch(`https://ctf-round-server.vercel.app/player/progress/${userId}`);
         const data = await response.json();
         setProgress(data.progress);
         localStorage.setItem("progress", data.progress); // Store in localStorage
@@ -37,7 +37,7 @@ const GameRoom = () => {
       setProgress(newProgress);
       localStorage.setItem("progress", newProgress);
 
-      await fetch("http://192.168.1.3:5000/update-progress", {
+      await fetch("https://ctf-round-server.vercel.app/update-progress", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, checkpoint: newProgress }),
