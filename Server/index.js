@@ -7,11 +7,20 @@ const session = require("express-session");
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server, { cors: { origin: "*" } });
+const io = new Server(server, {
+  cors: {
+    origin: ["http://localhost:5173", "https://your-frontend-domain.com"], // Allow frontend
+    methods: ["GET", "POST"], // Allow these HTTP methods
+    credentials: true, // Allow cookies & authentication
+  },
+});
+
+// Middleware
+app.use(cors({ origin: ["http://localhost:5173", "https://your-frontend-domain.com"], credentials: true }));
 
 mongoose.connect("mongodb+srv://CSI:CSI%40123@cluster0.1eckj.mongodb.net/CTF-Round", { useNewUrlParser: true });
 
-app.use(cors({origin : '*'}));
+// app.use(cors({origin : '*'}));
 app.use(express.json());
 app.use(session({ secret: "secretKey", resave: false, saveUninitialized: true }));
 
