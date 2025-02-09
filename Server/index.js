@@ -11,7 +11,7 @@ const io = socketIo(server, { cors: { origin: "*" } });
 
 mongoose.connect("mongodb+srv://CSI:CSI%40123@cluster0.1eckj.mongodb.net/CTF-Round", { useNewUrlParser: true });
 
-app.use(cors());
+app.use(cors({origin : '*'}));
 app.use(express.json());
 app.use(session({ secret: "secretKey", resave: false, saveUninitialized: true }));
 
