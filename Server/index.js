@@ -123,6 +123,10 @@ app.get("/admin/progress/:roomId", async (req, res) => {
   res.json(players);
 });
 
+app.get("/", (req, res) => {
+  res.send("<h1>Hello!</h1>");
+});
+
 io.on("connection", (socket) => {
   socket.on("joinRoom", (roomId) => {
     socket.join(roomId);
